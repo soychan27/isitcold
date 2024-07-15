@@ -3,6 +3,8 @@ package com.study.isitcold.controller;
 import com.study.isitcold.model.User;
 import com.study.isitcold.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +21,29 @@ public class IndexController {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @GetMapping({"","/"})
-    public String index() {
+    public String index(@AuthenticationPrincipal UserDetails userDetails) {
+        if (userDetails != null) {
+            return "indexloggedin";
+        }
         return "index";
     }
+
+    @GetMapping("/myinfoForm")
+    public String myinfoForm(){
+        return "myinfoform";
+    }
+
+    @PostMapping("/myinfo")
+    public String myinfo(@AuthenticationPrincipal UserDetails userDetails, User user) {
+        User currentUser = userRepository.findByUsername(userDetails.getUsername());
+        if (currentUser != null) {
+            currentUser.setCold_temp(user.getCold_temp());
+            currentUser.setHot_temp(user.getHot_temp());
+            userRepository.save(currentUser);
+        }
+        return "redirect:/";
+    }
+
 
     @GetMapping("/loginForm")
     public String loginForm() {

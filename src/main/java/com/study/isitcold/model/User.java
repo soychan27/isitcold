@@ -28,6 +28,13 @@ public class User {
     @CreationTimestamp
     private Timestamp createDate;
 
+    private Double cold_temp;
+    //default 12
+    private Double hot_temp;
+    //default 27
+
+
+
     @Builder
     public User(String username, String password, String email, String role,
                 String provider, String providerId, Timestamp createdDate) {

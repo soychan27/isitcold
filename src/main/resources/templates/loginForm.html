@@ -3,16 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <title>로그인 페이지</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: -50px; /* 위쪽 여백 줄이기 */
+        }
+        h1 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #808080; /* 회색 */
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #666666; /* 더 어두운 회색 */
+        }
+        .oauth-links {
+            margin-top: 10px;
+        }
+        .oauth-links a {
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 0 5px;
+            transition: background-color 0.3s ease;
+            color: white;
+        }
+        .oauth-links .google {
+            background-color: #007bff; /* 파란색 */
+        }
+        .oauth-links .google:hover {
+            background-color: #0056b3; /* 더 어두운 파란색 */
+        }
+        .oauth-links .naver {
+            background-color: #1ec800; /* 초록색 */
+        }
+        .oauth-links .naver:hover {
+            background-color: #169a00; /* 더 어두운 초록색 */
+        }
+    </style>
 </head>
 <body>
-<h1>로그인 페이지</h1>
-<form action ="/login" method = "post">
-    <input type = "text" name="username" placeholder="Username"/></br>
-    <input type = "password" name="password" placeholder="Password"/></br>
-    <button>로그인</button>
-</form>
-
-<a href = "/oauth2/authorization/google">구글 로그인</a>
-<a href = "/oauth2/authorization/naver">네이버 로그인</a>
+<div class="container">
+    <h1>로그인 페이지</h1>
+    <form action="/login" method="post">
+        <input type="text" name="username" placeholder="Username"/>
+        <input type="password" name="password" placeholder="Password"/>
+        <button type="submit">로그인</button>
+    </form>
+    <div class="oauth-links">
+        <a href="/oauth2/authorization/google" class="google">구글 로그인</a>
+        <a href="/oauth2/authorization/naver" class="naver">네이버 로그인</a>
+    </div>
+</div>
 </body>
 </html>
