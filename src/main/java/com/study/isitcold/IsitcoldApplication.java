@@ -11,3 +11,5 @@ public class IsitcoldApplication {
 	}
 
 }
+
+//http://localhost:8080/weather?nx=52&ny=122
