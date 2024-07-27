@@ -6,17 +6,26 @@
 </head>
 <body>
 <h1>Weather Information</h1>
-<p>날짜: <span th:text="${weather.date}"></span></p>
-<p>시간: <span th:text="${weather.time}"></span></p>
-<p>기온 (T1H): <span th:text="${weather.T1H != null ? weather.T1H + ' °C' : 'x'}"></span></p>
-<p>1시간 강수량 (RN1): <span th:text="${weather.RN1 != null ? weather.RN1 + ' mm' : 'x'}"></span></p>
-<p>하늘 상태 (SKY): <span th:text="${weather.SKY != null ? weather.SKY : 'x'}"></span></p>
-<p>동서바람 성분 (UUU): <span th:text="${weather.UUU != null ? weather.UUU + ' m/s' : 'x'}"></span></p>
-<p>남북바람 성분 (VVV): <span th:text="${weather.VVV != null ? weather.VVV + ' m/s' : 'x'}"></span></p>
-<p>습도 (REH): <span th:text="${weather.REH != null ? weather.REH + ' %' : 'x'}"></span></p>
-<p>강수형태 (PTY): <span th:text="${weather.PTY != null ? weather.PTY : 'x'}"></span></p>
-<p>낙뢰 (LGT): <span th:text="${weather.LGT != null ? weather.LGT : 'x'}"></span></p>
-<p>풍향 (VEC): <span th:text="${weather.VEC != null ? weather.VEC : 'x'}"></span></p>
-<p>풍속 (WSD): <span th:text="${weather.WSD != null ? weather.WSD + ' m/s' : 'x'}"></span></p>
+<p>날짜: <span th:text="${weather.formattedDate}"></span></p>
+<p>시간: <span th:text="${weather.formattedTime}"></span></p>
+<p>기온 (T1H): <span th:if="${weather.T1H != null}" th:text="${weather.T1H + ' °C'}"></span><span th:if="${weather.T1H == null}">x</span></p>
+<p>1시간 강수량 (RN1): <span th:if="${weather.RN1 != null}" th:text="${weather.RN1 + ' mm'}"></span><span th:if="${weather.RN1 == null}">x</span></p>
+<p>하늘 상태 (SKY): <span th:if="${weather.SKY != null}" th:text="${weather.SKY}"></span><span th:if="${weather.SKY == null}">x</span></p>
+<p>동서바람 성분 (UUU): <span th:if="${weather.UUU != null}" th:text="${weather.UUU + ' m/s'}"></span><span th:if="${weather.UUU == null}">x</span></p>
+<p>남북바람 성분 (VVV): <span th:if="${weather.VVV != null}" th:text="${weather.VVV + ' m/s'}"></span><span th:if="${weather.VVV == null}">x</span></p>
+<p>습도 (REH): <span th:if="${weather.REH != null}" th:text="${weather.REH + ' %'}"></span><span th:if="${weather.REH == null}">x</span></p>
+<p>강수형태 (PTY): <span th:if="${weather.PTY != null}" th:text="${weather.PTY}"></span><span th:if="${weather.PTY == null}">x</span></p>
+<p>낙뢰 (LGT): <span th:if="${weather.LGT != null}" th:text="${weather.LGT}"></span><span th:if="${weather.LGT == null}">x</span></p>
+<p>풍향 (VEC): <span th:if="${weather.VEC != null}" th:text="${weather.VEC}"></span><span th:if="${weather.VEC == null}">x</span></p>
+<p>풍속 (WSD): <span th:if="${weather.WSD != null}" th:text="${weather.WSD + ' m/s'}"></span><span th:if="${weather.WSD == null}">x</span></p>
+
+
+<h2>User Information</h2>
+<p>사용자 이름: <span th:text="${user.email}"></span></p>
+<p>사용자의 온도 기준 : <span th:text="${user.temp + ' °C'}"></span></p>
+<p>체감 온도(온도와 풍속 참조): <span th:if="${weather.feelsLikeTemperature != null}" th:text="${weather.feelsLikeTemperature + ' °C'}"></span></p>
+<p>불쾌 지수(온도와 습도 참조): <span th:text="${weather.discomfortTemperature}" ></span></p>
+<p>옷차림 추천 : <span th:text="${weather.clothingRecommendation}"></span></p>
+
 </body>
 </html>

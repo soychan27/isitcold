@@ -37,8 +37,7 @@ public class IndexController {
     public String myinfo(@AuthenticationPrincipal UserDetails userDetails, User user) {
         User currentUser = userRepository.findByUsername(userDetails.getUsername());
         if (currentUser != null) {
-            currentUser.setCold_temp(user.getCold_temp());
-            currentUser.setHot_temp(user.getHot_temp());
+            currentUser.setTemp(user.getTemp());
             userRepository.save(currentUser);
         }
         return "redirect:/";

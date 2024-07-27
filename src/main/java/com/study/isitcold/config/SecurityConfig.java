@@ -30,6 +30,7 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/user/**").authenticated()
+                        .requestMatchers("/weather").authenticated()
                         .anyRequest().permitAll()
                 )
                 .formLogin(form -> form

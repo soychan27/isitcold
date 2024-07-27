@@ -32,6 +32,9 @@ dependencies {
 	implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
 	implementation("com.fasterxml.jackson.core:jackson-databind")
 	implementation("org.json:json:20210307")
+	//csv 파일 넣기 위한 의존성
+	implementation("org.apache.poi:poi:5.2.2")
+	implementation("org.apache.poi:poi-ooxml:5.2.2")
 	compileOnly("org.projectlombok:lombok")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	annotationProcessor("org.projectlombok:lombok")

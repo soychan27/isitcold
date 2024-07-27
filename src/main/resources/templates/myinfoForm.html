@@ -24,6 +24,10 @@
             margin-bottom: 20px;
             color: #333;
         }
+        h6{
+            margin-bottom : 5px;
+            color : #333;
+        }
         form {
             display: flex;
             flex-direction: column;
@@ -33,7 +37,9 @@
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            font-size: 16px;
+            font-size: 12px;
+            width: 100%;
+            box-sizing: border-box;
         }
         button {
             padding: 10px 20px;
@@ -53,9 +59,10 @@
 <body>
 <div class="container">
     <h1>내 정보</h1>
+    <h6>여름이 좋다면 24, 겨울이 좋다면 18</h6>
+    <h6>선선하다고 느끼는 온도는?</h6>
     <form action="/myinfo" method="POST">
-        <input type="text" name="cold_temp" placeholder="추웠던 온도는?"/>
-        <input type="text" name="hot_temp" placeholder="더웠던 온도는?"/>
+        <input type="text" name="temp" placeholder="숫자만 적어주세요"/>
         <button type="submit">저장</button>
     </form>
 </div>

@@ -1,10 +1,7 @@
 package com.study.isitcold.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,14 +21,13 @@ public class User {
     private String email;
     private String role;
     private String provider;
+    @Column(name = "provider_id")
     private String providerId;
     @CreationTimestamp
+    @Column(name = "create_date")
     private Timestamp createDate;
 
-    private Double cold_temp;
-    //default 12
-    private Double hot_temp;
-    //default 27
+    private Double temp;
 
 
 

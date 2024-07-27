@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>위치 선택</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+        }
+        h1 {
+            font-size: 2em;
+            margin: 0;
+            color: #333;
+        }
+        .locations {
+            margin-top: 20px;
+        }
+        .location-select {
+            margin: 10px 0;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#level1').change(function() {
+                var level1 = $(this).val();
+                $.ajax({
+                    url: '/getSubLocations',
+                    data: { level: 1, region: level1 },
+                    success: function(data) {
+                        $('#level2').empty();
+                        $('#level2').append('<option value="">선택하세요</option>');
+                        data.forEach(function(item) {
+                            $('#level2').append('<option value="' + item + '">' + item + '</option>');
+                        });
+                        $('#level2-container').show();
+                        $('#level3-container').hide();
+                    }
+                });
+            });
+
+            $('#level2').change(function() {
+                var level2 = $(this).val();
+                $.ajax({
+                    url: '/getSubLocations',
+                    data: { level: 2, region: level2 },
+                    success: function(data) {
+                        $('#level3').empty();
+                        $('#level3').append('<option value="">선택하세요</option>');
+                        data.forEach(function(item) {
+                            $('#level3').append('<option value="' + item + '">' + item + '</option>');
+                        });
+                        $('#level3-container').show();
+                    }
+                });
+            });
+
+            $('#level3').change(function() {
+                var level1 = $('#level1').val();
+                var level2 = $('#level2').val();
+                var level3 = $(this).val();
+                $.ajax({
+                    url: '/getCoordinates',
+                    data: { level1: level1, level2: level2, level3: level3 },
+                    success: function(data) {
+                        if(data.error) {
+                            alert(data.error);
+                        } else {
+                            var nx = data.nx;
+                            var ny = data.ny;
+                            var region = level1 + " " + level2 + " " + level3;
+                            window.location.href = '/weather?nx=' + nx + '&ny=' + ny + '&region=' + region;
+                        }
+                    },
+                    error: function() {
+                        alert("Failed to get location coordinates.");
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1>위치 선택</h1>
+    <div class="locations">
+        <div class="location-select">
+            <select id="level1">
+                <option value="">선택하세요</option>
+                <div th:each="location : ${level1Locations}">
+                    <option th:text="${location}" th:value="${location}"></option>
+                </div>
+            </select>
+        </div>
+        <div id="level2-container" class="location-select" style="display: none;">
+            <select id="level2">
+                <option value="">선택하세요</option>
+            </select>
+        </div>
+        <div id="level3-container" class="location-select" style="display: none;">
+            <select id="level3">
+                <option value="">선택하세요</option>
+            </select>
+        </div>
+    </div>
+</div>
+</body>
+</html>

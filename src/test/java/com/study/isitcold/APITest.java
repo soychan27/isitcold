@@ -12,9 +12,9 @@ public class APITest {
         String apiURL = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst";
         String authKey = "8whX6FiBbxmrDTh2tlVPBjx4IyHssnwtvC%2B0yuyBg6T0C0B0Y%2BaIbeOdtkBQZSnBfzHFGEA7C4%2BIjG32N5lHJg%3D%3D";
 
-        String nx = "69";
-        String ny = "100";
-        String baseDate = "20240716";
+        String nx = "52";
+        String ny = "122";
+        String baseDate = "20240316";
         String baseTime = "2130";
 
         String dataType = "JSON";
